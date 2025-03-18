@@ -667,6 +667,12 @@ maybe_get(Key, Map, Default) ->
 
 
 %% @private
+do_put_path(Keys, Value, undefined) ->
+    do_put_path(Keys, Value, #{});
+
+do_put_path(Keys, Value, null) ->
+    do_put_path(Keys, Value, #{});
+
 do_put_path([Key], Value, Map) ->
     maps:put(Key, Value, Map);
 
@@ -684,6 +690,12 @@ do_put_path(Key, Value, Map) ->
 
 
 %% @private
+do_append_list_path(Keys, Value, undefined) ->
+    do_append_list_path(Keys, Value, #{});
+
+do_append_list_path(Keys, Value, null) ->
+    do_append_list_path(Keys, Value, #{});
+
 do_append_list_path([Key], Value, Map) ->
     append_list(Key, Value, Map);
 
@@ -701,6 +713,12 @@ do_append_list_path(Key, Value, Map) ->
 
 
 %% @private
+do_remove_path(_, undefined) ->
+    undefined;
+
+do_remove_path(_, null) ->
+    null;
+
 do_remove_path([Key], Map) ->
     maps:remove(Key, Map);
 
